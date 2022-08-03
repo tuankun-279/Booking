@@ -9,4 +9,10 @@
     <string name="orders">Orders</string>
     <string name="collection">Collection</string>
     <string name="setting">Settings</string>
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>All</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

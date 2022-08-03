@@ -1,46 +1,38 @@
 package tuan.aprotrain.projectpetcare.entity;
 
 public class Pets {
-    private long petId;
     private String petName;
-    private String gender;
-    private String breed;
-    private String birthDate;
-    private Float petHeight;
-    private Float petWeight;
-    private String color;
-    private Boolean intact;
-    private String notes;
-    private long userId;
 
-    public Pets(){}
-    public Pets(long petId, String petName, String gender, String breed,
-                String birthDate, Float petHeight, Float petWeight,
-                String color, Boolean intact, String notes, long userId) {
-        this.petId = petId;
+    private boolean gender;
+    private String breed;
+    private String species;
+
+    private Long petHeight;
+    private Long petWeight;
+    private String birthDate;
+    private String color;
+    private boolean intact;
+    private String notes;
+
+    private int petId;
+    private int userId;
+
+    public Pets() {
+    }
+
+    public Pets(String petName, boolean gender, String breed, String species, Long petHeight, Long petWeight, String birthDate, String color, boolean intact, String notes, int petId, int userId) {
         this.petName = petName;
         this.gender = gender;
         this.breed = breed;
-        this.birthDate = birthDate;
+        this.species = species;
         this.petHeight = petHeight;
         this.petWeight = petWeight;
+        this.birthDate = birthDate;
         this.color = color;
         this.intact = intact;
         this.notes = notes;
-        this.userId = userId;
-    }
-
-    public Pets(String petName) {
-        this.petName = petName;
-    }
-
-
-    public long getPetId() {
-        return petId;
-    }
-
-    public void setPetId(long petId) {
         this.petId = petId;
+        this.userId = userId;
     }
 
     public String getPetName() {
@@ -51,11 +43,11 @@ public class Pets {
         this.petName = petName;
     }
 
-    public String getGender() {
+    public boolean isGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
@@ -67,28 +59,36 @@ public class Pets {
         this.breed = breed;
     }
 
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public Long getPetHeight() {
+        return petHeight;
+    }
+
+    public void setPetHeight(Long petHeight) {
+        this.petHeight = petHeight;
+    }
+
+    public Long getPetWeight() {
+        return petWeight;
+    }
+
+    public void setPetWeight(Long petWeight) {
+        this.petWeight = petWeight;
+    }
+
     public String getBirthDate() {
         return birthDate;
     }
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public Float getPetHeight() {
-        return petHeight;
-    }
-
-    public void setPetHeight(Float petHeight) {
-        this.petHeight = petHeight;
-    }
-
-    public Float getPetWeight() {
-        return petWeight;
-    }
-
-    public void setPetWeight(Float petWeight) {
-        this.petWeight = petWeight;
     }
 
     public String getColor() {
@@ -99,11 +99,11 @@ public class Pets {
         this.color = color;
     }
 
-    public Boolean getIntact() {
+    public boolean isIntact() {
         return intact;
     }
 
-    public void setIntact(Boolean intact) {
+    public void setIntact(boolean intact) {
         this.intact = intact;
     }
 
@@ -115,11 +115,19 @@ public class Pets {
         this.notes = notes;
     }
 
-    public long getUserId() {
+    public int getPetId() {
+        return petId;
+    }
+
+    public void setPetId(int petId) {
+        this.petId = petId;
+    }
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }
