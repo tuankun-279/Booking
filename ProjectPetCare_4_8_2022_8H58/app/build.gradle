@@ -63,4 +63,9 @@ dependencies {
     //circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //reminder library
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    implementation('com.google.code.gson:gson:2.8.8')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
 }

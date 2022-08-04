@@ -35,6 +35,10 @@ public class Pets {
         this.userId = userId;
     }
 
+    public Pets(String petName) {
+        this.petName = petName;
+    }
+
     public String getPetName() {
         return petName;
     }

@@ -25,6 +25,8 @@ import tuan.aprotrain.projectpetcare.Adapter.ExpandLVCheckBox;
 import tuan.aprotrain.projectpetcare.Adapter.PaymentAdapter;
 import tuan.aprotrain.projectpetcare.Adapter.PetNameAdapter;
 import tuan.aprotrain.projectpetcare.R;
+import tuan.aprotrain.projectpetcare.entity.Bookings;
+import tuan.aprotrain.projectpetcare.entity.Pets;
 
 public class BookingActivity extends AppCompatActivity {
     /*
@@ -53,14 +55,14 @@ public class BookingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_booking);
 
         spinnerPetName = (Spinner) findViewById(R.id.spnPetName);
-        //petnameAdapter = new PetNameAdapter(this,R.layout.layout_selected_dropdown,getListName());
+        petnameAdapter = new PetNameAdapter(this,R.layout.layout_selected_dropdown,getListName());
         spinnerPetName.setAdapter(petnameAdapter);
 
         spinnerPayment = findViewById(R.id.spnPayment);
-        //paymentAdapter = new PaymentAdapter(this,R.layout.layout_selected_dropdown,getListPay());
+        paymentAdapter = new PaymentAdapter(this,R.layout.layout_selected_dropdown,getListPay());
         spinnerPayment.setAdapter(paymentAdapter);
 
 
@@ -219,7 +221,6 @@ public class BookingActivity extends AppCompatActivity {
 //        });
 //
 
-
     }
     private void prepareListData() {
         listCategory = new ArrayList<String>();
@@ -236,21 +237,21 @@ public class BookingActivity extends AppCompatActivity {
         listService.put(listCategory.get(0), list);
     }
 
-//    private List<Pets> getListName(){
-//        List<Pets> listN = new ArrayList<>();
-//        listN.add(new Pets("Pet's Name"));
-//        listN.add(new Pets("Alexander III. Pudding"));
-//        listN.add(new Pets("Cheems"));
-//        listN.add(new Pets("Nasus"));
-//        listN.add(new Pets("Yuumi"));
-//        return listN;
-//    }
-//
-//    private List<Bookings> getListPay(){
-//        List<Bookings> listP = new ArrayList<>();
-//        listP.add(new Bookings("Payment"));
-//        listP.add(new Bookings("Banking"));
-//        listP.add(new Bookings("Cash"));
-//        return listP;
+    private List<Pets> getListName(){
+        List<Pets> listN = new ArrayList<>();
+        listN.add(new Pets("Pet's Name"));
+        listN.add(new Pets("Alexander III. Pudding"));
+        listN.add(new Pets("Cheems"));
+        listN.add(new Pets("Nasus"));
+        listN.add(new Pets("Yuumi"));
+        return listN;
     }
-//}
+
+    private List<Bookings> getListPay(){
+        List<Bookings> listP = new ArrayList<>();
+        listP.add(new Bookings("Payment"));
+        listP.add(new Bookings("Banking"));
+        listP.add(new Bookings("Cash"));
+        return listP;
+    }
+}

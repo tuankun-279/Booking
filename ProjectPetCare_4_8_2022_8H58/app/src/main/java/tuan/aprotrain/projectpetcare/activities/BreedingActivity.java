@@ -80,7 +80,7 @@ public class BreedingActivity extends AppCompatActivity {
 
         getListPetsFromRealTimeDataBase();
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void getListPetsFromRealTimeDataBase() {
