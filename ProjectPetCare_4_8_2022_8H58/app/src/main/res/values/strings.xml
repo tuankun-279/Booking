@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ProjectPetCare</string>
+
+    <string name="profile">Profile</string>
+    <string name="notification">Notification</string>
+    <string name="info">About</string>
+    <string name="support">Support</string>
+    <string name="inbox">Inbox</string>
+    <string name="orders">Orders</string>
+    <string name="collection">Collection</string>
+    <string name="setting">Settings</string>
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>All</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
