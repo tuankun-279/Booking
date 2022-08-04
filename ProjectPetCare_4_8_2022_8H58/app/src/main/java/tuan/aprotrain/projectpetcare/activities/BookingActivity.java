@@ -14,7 +14,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,10 +59,13 @@ public class BookingActivity extends AppCompatActivity {
     private PaymentAdapter paymentAdapter;
 
 
+    private DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
+
+        reference = FirebaseDatabase.getInstance().getReference();
 
         spinnerPetName = (Spinner) findViewById(R.id.spnPetName);
         petnameAdapter = new PetNameAdapter(this,R.layout.layout_selected_dropdown,getListName());
@@ -80,6 +90,8 @@ public class BookingActivity extends AppCompatActivity {
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
         final int hour = calendar.get(Calendar.HOUR_OF_DAY);
         final int minute = calendar.get(Calendar.MINUTE);
+
+
     /*
         Hàm set date
     */
@@ -154,7 +166,6 @@ public class BookingActivity extends AppCompatActivity {
         Hàm của expandable listview checkbox
     */
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
@@ -225,33 +236,77 @@ public class BookingActivity extends AppCompatActivity {
     private void prepareListData() {
         listCategory = new ArrayList<String>();
         listService = new HashMap<String, List<String>>();
+        //Intent pass data
         listCategory.add("Category");
+
         List<String> list = new ArrayList<String>();
-        list.add("Pet Care");
-        list.add("Pet Hotel");
-        list.add("Pet Spa");
-        list.add("Pet Bounding");
-        list.add("Pet Fashion");
-        list.add("Pet Gym");
-        list.add("Pet Meal");
+
+        reference.child("Services").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("hello 1");
+                for(DataSnapshot serviceSnapshot: snapshot.getChildren()){
+                    list.add(serviceSnapshot.child("serviceName").getValue(String.class));
+                    System.out.println("Service:"+serviceSnapshot.child("serviceName").getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         listService.put(listCategory.get(0), list);
     }
 
     private List<Pets> getListName(){
         List<Pets> listN = new ArrayList<>();
-        listN.add(new Pets("Pet's Name"));
-        listN.add(new Pets("Alexander III. Pudding"));
-        listN.add(new Pets("Cheems"));
-        listN.add(new Pets("Nasus"));
-        listN.add(new Pets("Yuumi"));
+        reference.child("Pets").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("hello 1");
+                for(DataSnapshot petSnapshot: snapshot.getChildren()){
+                    //Pets pet = petSnapshot.getValue(Pets.class);
+                    listN.add(new Pets(petSnapshot.child("petName").getValue(String.class)));
+                    //System.out.println("Service:"+serviceSnapshot.child("serviceName").getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        System.out.println("Pets: "+listN.toString());
+//        listN.add(new Pets("Pet's Name"));
+//        listN.add(new Pets("Alexander III. Pudding"));
+//        listN.add(new Pets("Cheems"));
+//        listN.add(new Pets("Nasus"));
+//        listN.add(new Pets("Yuumi"));
         return listN;
     }
 
     private List<Bookings> getListPay(){
         List<Bookings> listP = new ArrayList<>();
-        listP.add(new Bookings("Payment"));
-        listP.add(new Bookings("Banking"));
-        listP.add(new Bookings("Cash"));
+        reference.child("Bookings").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("hello 1");
+                for(DataSnapshot petSnapshot: snapshot.getChildren()){
+                    //Pets pet = petSnapshot.getValue(Pets.class);
+                    listP.add(new Bookings(petSnapshot.child("payment").getValue(String.class)));
+                    //System.out.println("Service:"+serviceSnapshot.child("serviceName").getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        listP.add(new Bookings("Payment"));
+//        listP.add(new Bookings("Banking"));
+//        listP.add(new Bookings("Cash"));
         return listP;
     }
 }
