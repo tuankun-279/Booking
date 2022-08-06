@@ -1,12 +1,12 @@
 package tuan.aprotrain.projectpetcare.entity;
 
-public class Categories {
+public class Category {
     private long categoryId;
     private String categoryName;
 
-    public Categories(){}
+    public Category(){}
 
-    public Categories(long categoryId, String categoryName) {
+    public Category(long categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }

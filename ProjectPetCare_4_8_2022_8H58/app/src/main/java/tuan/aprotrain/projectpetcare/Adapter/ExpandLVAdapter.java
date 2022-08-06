@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 import tuan.aprotrain.projectpetcare.R;
-import tuan.aprotrain.projectpetcare.entity.Categories;
-import tuan.aprotrain.projectpetcare.entity.Services;
+import tuan.aprotrain.projectpetcare.entity.Category;
+import tuan.aprotrain.projectpetcare.entity.Service;
 
 public class ExpandLVAdapter extends BaseExpandableListAdapter{
     private Context context;
-    private List<Categories> listCate;
-    private Map<Categories, List<Services>> listService;
+    private List<Category> listCate;
+    private Map<Category, List<Service>> listService;
 
 
 

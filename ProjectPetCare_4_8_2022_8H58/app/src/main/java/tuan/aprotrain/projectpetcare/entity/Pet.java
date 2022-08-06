@@ -1,26 +1,26 @@
 package tuan.aprotrain.projectpetcare.entity;
 
-public class Pets {
+public class Pet {
     private String petName;
 
-    private boolean gender;
+    private String gender;
     private String breed;
     private String species;
 
-    private Long petHeight;
-    private Long petWeight;
+    private float petHeight;
+    private float petWeight;
     private String birthDate;
     private String color;
-    private boolean intact;
+    private String intact;
     private String notes;
 
-    private int petId;
-    private int userId;
+    private long petId;
+    private String userId;
 
-    public Pets() {
+    public Pet() {
     }
 
-    public Pets(String petName, boolean gender, String breed, String species, Long petHeight, Long petWeight, String birthDate, String color, boolean intact, String notes, int petId, int userId) {
+    public Pet(String petName, String gender, String breed, String species, float petHeight, float petWeight, String birthDate, String color, String intact, String notes, int petId, String userId) {
         this.petName = petName;
         this.gender = gender;
         this.breed = breed;
@@ -35,10 +35,6 @@ public class Pets {
         this.userId = userId;
     }
 
-    public Pets(String petName) {
-        this.petName = petName;
-    }
-
     public String getPetName() {
         return petName;
     }
@@ -47,11 +43,11 @@ public class Pets {
         this.petName = petName;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -71,19 +67,19 @@ public class Pets {
         this.species = species;
     }
 
-    public Long getPetHeight() {
+    public float getPetHeight() {
         return petHeight;
     }
 
-    public void setPetHeight(Long petHeight) {
+    public void setPetHeight(float petHeight) {
         this.petHeight = petHeight;
     }
 
-    public Long getPetWeight() {
+    public float getPetWeight() {
         return petWeight;
     }
 
-    public void setPetWeight(Long petWeight) {
+    public void setPetWeight(float petWeight) {
         this.petWeight = petWeight;
     }
 
@@ -103,11 +99,11 @@ public class Pets {
         this.color = color;
     }
 
-    public boolean isIntact() {
+    public String getIntact() {
         return intact;
     }
 
-    public void setIntact(boolean intact) {
+    public void setIntact(String intact) {
         this.intact = intact;
     }
 
@@ -119,19 +115,19 @@ public class Pets {
         this.notes = notes;
     }
 
-    public int getPetId() {
+    public long getPetId() {
         return petId;
     }
 
-    public void setPetId(int petId) {
+    public void setPetId(long petId) {
         this.petId = petId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

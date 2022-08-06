@@ -133,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    user = new User(FirebaseAuth.getInstance().getUid(),email.toLowerCase());
+                    user = new User(FirebaseAuth.getInstance().getUid(),email.toLowerCase(),"user");
                     referenceUsers.child(FirebaseAuth.getInstance().getUid()).setValue(user);
                     Toast.makeText(RegisterActivity.this,"User registered successfully",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));

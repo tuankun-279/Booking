@@ -1,13 +1,13 @@
 package tuan.aprotrain.projectpetcare.entity;
 
-public class Images {
+public class Image {
     private long imageId;
     private String fileName;
     private String url;
 
-    public Images(){}
+    public Image(){}
 
-    public Images(long imageId, String fileName, String url) {
+    public Image(long imageId, String fileName, String url) {
         this.imageId = imageId;
         this.fileName = fileName;
         this.url = url;

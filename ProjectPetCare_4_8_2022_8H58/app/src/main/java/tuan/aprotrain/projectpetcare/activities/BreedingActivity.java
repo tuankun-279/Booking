@@ -12,14 +12,21 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -29,7 +36,7 @@ import java.util.Set;
 import tuan.aprotrain.projectpetcare.Adapter.PetAdapter;
 import tuan.aprotrain.projectpetcare.R;
 import tuan.aprotrain.projectpetcare.databinding.ActivityMainBinding;
-import tuan.aprotrain.projectpetcare.entity.Pets;
+import tuan.aprotrain.projectpetcare.entity.Pet;
 
 public class BreedingActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -43,8 +50,10 @@ public class BreedingActivity extends AppCompatActivity {
     LinearLayout ckAdditionalSearchSpinner;
     LinearLayout showoHideButtonFilter;
 
-    private ArrayList<Pets> petsList;
-    private ArrayList<Pets> petsListSelected = new ArrayList<>();
+    private DatabaseReference reference ;
+
+    private ArrayList<Pet> petList;
+    private ArrayList<Pet> petListSelected = new ArrayList<>();
     private ArrayList<String> spinnersSpeciesList = new ArrayList<>();
 
     // Define ActionBar object
@@ -74,8 +83,10 @@ public class BreedingActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv_pet_id.setLayoutManager(linearLayoutManager);
 
-        petsList = new ArrayList<>();
-        petAdapter = new PetAdapter(petsList);
+        reference = FirebaseDatabase.getInstance().getReference();
+
+        petList = new ArrayList<>();
+        petAdapter = new PetAdapter(petList);
         rv_pet_id.setAdapter(petAdapter);
 
         getListPetsFromRealTimeDataBase();
@@ -88,33 +99,33 @@ public class BreedingActivity extends AppCompatActivity {
         //Real time database
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference databaseReference = database.getReference("Pets");
+//        DatabaseReference databaseReference = database.getReference("Pet");
 //
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                    Pets pets = dataSnapshot.getValue(Pets.class);
-//                    petsList.add(pets);
-//                }
-//                petAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        reference.child("Pets").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Pet pet = dataSnapshot.getValue(Pet.class);
+                    petList.add(pet);
+                }
+                petAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //raw data
-        petsList.add(new Pets("king", true, "corgi", "dog", 10L, 20L,
-                "17/04/2004", "green", true, "don't know ya", 1, 2));
-        petsList.add(new Pets("kong", false, "beggie", "cat", 5L, 1L,
-                "17/04/2021", "red", false, "...", 2, 1));
-        petsList.add(new Pets("cat", false, "beggie", "cat", 5L, 1L,
-                "17/04/2021", "red", false, "...", 2, 1));
-        petsList.add(new Pets("cat", false, "yellow", "cat", 5L, 1L,
-                "17/04/2021", "yellow", false, "...", 2, 1));
+//        petList.add(new Pet("king", "male", "corgi", "dog", 10L, 20L,
+//                "17/04/2004", "green", "male", "don't know ya", 1, "2"));
+//        petList.add(new Pet("kong", "female", "beggie", "cat", 5L, 1L,
+//                "17/04/2021", "red", "female", "...", 2, "1"));
+//        petList.add(new Pet("cat", "female", "beggie", "cat", 5L, 1L,
+//                "17/04/2021", "red", "female", "...", 2, "1"));
+//        petList.add(new Pet("cat", "female", "yellow", "cat", 5L, 1L,
+//                "17/04/2021", "yellow", "female", "...", 2, "1"));
     }
 
     @Override
@@ -171,8 +182,8 @@ public class BreedingActivity extends AppCompatActivity {
                 showoHideButtonFilter.setVisibility(View.VISIBLE);
 
                 //begin display spinner species
-                for (Pets petsItem : petsList) {
-                    spinnersSpeciesList.add(petsItem.getSpecies());
+                for (Pet petItem : petList) {
+                    spinnersSpeciesList.add(petItem.getSpecies());
                 }
                 Set<String> speciesWithoutDuplicate = new LinkedHashSet<String>(spinnersSpeciesList);
 
@@ -201,17 +212,17 @@ public class BreedingActivity extends AppCompatActivity {
                         String selectedItem = parent.getItemAtPosition(position).toString();
 
                         if (selectedItem.equals("All")) {
-                            petsListSelected.clear();
-                            petAdapter = new PetAdapter(petsList);
+                            petListSelected.clear();
+                            petAdapter = new PetAdapter(petList);
                             rv_pet_id.setAdapter(petAdapter);
                         } else {
-                            petsListSelected.clear();
-                            for (Pets petItemOnlySpecies : petsList) {
+                            petListSelected.clear();
+                            for (Pet petItemOnlySpecies : petList) {
                                 if (selectedItem.equals(petItemOnlySpecies.getSpecies())) {
-                                    petsListSelected.add(petItemOnlySpecies);
+                                    petListSelected.add(petItemOnlySpecies);
                                 }
                             }
-                            petAdapter = new PetAdapter(petsListSelected);
+                            petAdapter = new PetAdapter(petListSelected);
                             rv_pet_id.setAdapter(petAdapter);
                         }
                         //end spinnerSpecies spinner
@@ -234,29 +245,29 @@ public class BreedingActivity extends AppCompatActivity {
                         String selectedItem = parent.getItemAtPosition(position).toString();
 
                         if (selectedItem.equals("Male")) {
-                            petsListSelected.clear();
-                            for (Pets petItem : petsList) {
-                                if (petItem.isGender() == true) {
-                                    petsListSelected.add(petItem);
+                            petListSelected.clear();
+                            for (Pet petItem : petList) {
+                                if (petItem.getGender().equals("male")) {
+                                    petListSelected.add(petItem);
                                 }
                             }
 
-                            petAdapter = new PetAdapter(petsListSelected);
+                            petAdapter = new PetAdapter(petListSelected);
                             rv_pet_id.setAdapter(petAdapter);
                         } else if (selectedItem.equals("Female")) {
-                            petsListSelected.clear();
+                            petListSelected.clear();
 
-                            for (Pets petItem : petsList) {
-                                if (petItem.isGender() == false) {
-                                    petsListSelected.add(petItem);
+                            for (Pet petItem : petList) {
+                                if (petItem.getGender().equals("female")) {
+                                    petListSelected.add(petItem);
                                 }
                             }
 
-                            petAdapter = new PetAdapter(petsListSelected);
+                            petAdapter = new PetAdapter(petListSelected);
                             rv_pet_id.setAdapter(petAdapter);
                         } else {
-                            petsListSelected.clear();
-                            petAdapter = new PetAdapter(petsList);
+                            petListSelected.clear();
+                            petAdapter = new PetAdapter(petList);
                             rv_pet_id.setAdapter(petAdapter);
                         }
 
@@ -316,8 +327,8 @@ public class BreedingActivity extends AppCompatActivity {
 
 
     private void colorAbreedFilterList(String searchText) {
-        List<Pets> filteredPet = new ArrayList<>();
-        for (Pets item : petsList) {
+        List<Pet> filteredPet = new ArrayList<>();
+        for (Pet item : petList) {
 
             if (item.getColor().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredPet.add(item);
@@ -340,8 +351,8 @@ public class BreedingActivity extends AppCompatActivity {
     }
 
     public void breedFilter(String searchText) {
-        List<Pets> filteredPet = new ArrayList<>();
-        for (Pets item : petsList) {
+        List<Pet> filteredPet = new ArrayList<>();
+        for (Pet item : petList) {
 
             if (item.getBreed().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredPet.add(item);
@@ -362,11 +373,11 @@ public class BreedingActivity extends AppCompatActivity {
             petAdapter.setFilteredList(filteredPet);
         }
     }
-
+    // search by color
     public void colorFilter(String searchText) {
 
-        List<Pets> filteredPet = new ArrayList<>();
-        for (Pets item : petsList) {
+        List<Pet> filteredPet = new ArrayList<>();
+        for (Pet item : petList) {
 
             if (item.getColor().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredPet.add(item);

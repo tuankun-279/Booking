@@ -170,6 +170,7 @@ public class LoginActivity extends AppCompatActivity {
                                             }
 
 
+
 //                                            reference.child(user.getUid())
 //                                                    .get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //                                                @Override
@@ -189,57 +190,10 @@ public class LoginActivity extends AppCompatActivity {
 //                                            startActivity(new Intent(LoginActivity.this, BookingActivity.class));
                                         }
                                     });
-
-
-
-
-
                         } else { // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
-//        SessionManager sessionManager;
-//        sessionManager = new SessionManager(getApplicationContext());
-//        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                boolean i = false;
-//                //user = new Users();
-//                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-//                    Users userGet = userSnapshot.getValue(Users.class);
-//                    System.out.println("Users: "+userGet.toString());
-//                    if (email.equals(userGet.getEmail())
-//                            && userGet.getPassword().equals(recycle.getMd5(password))) {
-//                        //sessionManager.createLoginSession(userGet.getUserName(), String.valueOf(userGet.getUserId()));
-//                        //FirebaseMessaging.getInstance().getToken().getResult();
-//                        FirebaseMessaging.getInstance().getToken()
-//                                .addOnCompleteListener(new OnCompleteListener<String>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<String> task) {
-//                                        if (!task.isSuccessful()) {
-//                                            System.out.println("Fetching FCM registration token failed");
-//                                            return;
-//                                        }
-//                                        String token = task.getResult();
-//                                        System.out.println("Token: " + token);
-//
-//                                        String android_id = Settings.Secure.getString(getContentResolver(),
-//                                                Settings.Secure.ANDROID_ID);
-//                                        if (!userSnapshot.child("token").hasChild(android_id)) {
-//                                            userGet.setUserToken(token);
-//                                            reference.child(String.valueOf(userGet.getUserId())).child("token")
-//                                                    .child(android_id).setValue(token);
-//                                        }
-//                                    }
-//                                });
-//                    }
-//                }//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
     }
 }

@@ -22,15 +22,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import tuan.aprotrain.projectpetcare.R;
-import tuan.aprotrain.projectpetcare.entity.Pets;
+import tuan.aprotrain.projectpetcare.entity.Pet;
 
 public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
-        private List<Pets> mlistPets;
-        public PetAdapter(List<Pets> mlistPets) {
+        private List<Pet> mlistPets;
+        public PetAdapter(List<Pet> mlistPets) {
             this.mlistPets = mlistPets;
         }
 
-        public void setFilteredList(List<Pets> filteredList){
+        public void setFilteredList(List<Pet> filteredList){
             this.mlistPets = filteredList;
             notifyDataSetChanged();
         }
@@ -44,14 +44,14 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
 
         @Override
         public void onBindViewHolder(@NonNull PetViewHolder holder, int position) { //go data
-            Pets pets = mlistPets.get(position);
-            if(pets == null){
+            Pet pet = mlistPets.get(position);
+            if(pet == null){
                 return;
             }
 
-            holder.tv_name.setText(pets.getPetName());
-            holder.tv_species.setText(pets.getSpecies());
-            if(pets.isGender() == true){
+            holder.tv_name.setText(pet.getPetName());
+            holder.tv_species.setText(pet.getSpecies());
+            if(pet.getGender().equals("male")){
                 holder.tv_gender.setText("male");
             }else{
                 holder.tv_gender.setText("female");
@@ -122,33 +122,33 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
             TextView tv_pet_intact = dialog.findViewById(R.id.tv_pet_intact);
             TextView tv_pet_notes = dialog.findViewById(R.id.tv_pet_notes);
 
-            Pets pets = mlistPets.get(pos_click);
-            if(pets == null){
+            Pet pet = mlistPets.get(pos_click);
+            if(pet == null){
                 return;
             }
-//        holder.imgAvatar.setImageResource(pets);
-            tv_pet_name.setText("Name: "+pets.getPetName());
+//        holder.imgAvatar.setImageResource(pet);
+            tv_pet_name.setText("Name: "+ pet.getPetName());
 
-            if(pets.isGender() == true){
+            if(pet.getGender().equals("male")){
                 tv_pet_gender.setText("Gender: Male");
             }else{
                 tv_pet_gender.setText("Gender: Female");
             }
 
-            tv_pet_breed.setText("Breed: "+pets.getBreed());
-            tv_pet_species.setText("Species: "+pets.getSpecies());
+            tv_pet_breed.setText("Breed: "+ pet.getBreed());
+            tv_pet_species.setText("Species: "+ pet.getSpecies());
 
-            tv_pet_height.setText("Height: "+String.valueOf(pets.getPetHeight()) + " cm");
-            tv_pet_weight.setText("Weight: "+String.valueOf(pets.getPetWeight()) + "kg");
+            tv_pet_height.setText("Height: "+String.valueOf(pet.getPetHeight()) + " cm");
+            tv_pet_weight.setText("Weight: "+String.valueOf(pet.getPetWeight()) + "kg");
 
-            tv_pet_birthdate.setText("Birth Date: "+pets.getBirthDate());
-            tv_pet_color.setText("Color: "+pets.getColor());
-            if(pets.isIntact() == true){
+            tv_pet_birthdate.setText("Birth Date: "+ pet.getBirthDate());
+            tv_pet_color.setText("Color: "+ pet.getColor());
+            if(pet.getGender().equals("male")){
                 tv_pet_intact.setText("Intact: Yes");
             }else{
                 tv_pet_intact.setText("Intact: No");
             }
-            tv_pet_notes.setText("Notes: "+pets.getNotes());
+            tv_pet_notes.setText("Notes: "+ pet.getNotes());
 
 
 

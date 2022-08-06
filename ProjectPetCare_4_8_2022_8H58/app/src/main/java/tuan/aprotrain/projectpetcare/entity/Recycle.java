@@ -3,9 +3,51 @@ package tuan.aprotrain.projectpetcare.entity;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Recycle {
+    // upper letter for string
+    public String setUpperLetter(String text){
+        String words[]=text.split("\\s");
+        String capitalizeWord="";
+        for(String w:words){
+            String first=w.substring(0,1);
+            String afterfirst=w.substring(1);
+            capitalizeWord+=first.toUpperCase()+afterfirst+" ";
+        }
+        return capitalizeWord.trim();
+    }
 
+    //upper letter a character
+    public String getUpperLetter(String text){
+        char c[] = text.toCharArray();
+        System.out.println("The first character of each word: ");
+        List<Character> chars = new LinkedList<Character>(Arrays.asList());
+        for (int i=0; i < c.length; i++) {
+            // Logic to implement first character of each word in a string
+            if(c[i] != ' ' && (i == 0 || c[i-1] == ' ')) {
+                chars.add(c[i]);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(Character ch : chars){
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
+
+    public String idHashcode(String text){
+        String upperCharacter = getUpperLetter(text);
+        int randomNumber = ( int )( Math.random() * 9999 );
+
+        if( randomNumber <= 1000 ) {
+            randomNumber = randomNumber + 1000;
+        }
+        String bookingId  = upperCharacter + String.valueOf(randomNumber);
+        return getMd5(bookingId);
+    }
 
     public String getMd5(String input)
     {

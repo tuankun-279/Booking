@@ -15,4 +15,14 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string-array name="petName">
+        <item>Giga Doge</item>
+        <item>Lakavu Nguyen</item>
+        <item>Giga Cato</item>
+        <item>MilkShake</item>
+    </string-array>
+    <string-array name="payment">
+        <item>Banking</item>
+        <item>Cash</item>
+    </string-array>
 </resources>

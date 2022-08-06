@@ -1,12 +1,12 @@
 package tuan.aprotrain.projectpetcare.entity;
 
-public class BookingDetails {
+public class BookingDetail {
     private long bookingId;
     private long serviceId;
 
-    public BookingDetails(){}
+    public BookingDetail(){}
 
-    public BookingDetails(long bookingId, long serviceId) {
+    public BookingDetail(long bookingId, long serviceId) {
         this.bookingId = bookingId;
         this.serviceId = serviceId;
     }

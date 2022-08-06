@@ -75,4 +75,7 @@ dependencies {
     implementation('com.google.code.gson:gson:2.8.8')
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
+    //qrcode
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
 }
