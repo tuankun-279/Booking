@@ -62,6 +62,7 @@ public class BookingActivity extends AppCompatActivity implements AdapterView.On
      */
     private Spinner spinnerPetName;
     private Spinner spinnerPayment;
+    private Spinner spinnerAddress;
     private DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,11 @@ public class BookingActivity extends AppCompatActivity implements AdapterView.On
         spinnerPayment.setOnItemSelectedListener(this);
         spinnerPayment.setAdapter(paymentAdapter);
 
+        spinnerAddress = findViewById(R.id.spnAddress);
+        ArrayAdapter<CharSequence> addressAdapter = ArrayAdapter.createFromResource(this,R.array.adress, android.R.layout.simple_spinner_item);
+        addressAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAddress.setOnItemSelectedListener(this);
+        spinnerAddress.setAdapter(addressAdapter);
 
         expListView = (ExpandableListView) findViewById(R.id.expandLV);
         prepareListData();

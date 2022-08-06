@@ -25,4 +25,12 @@
         <item>Banking</item>
         <item>Cash</item>
     </string-array>
+    <string-array name="adress">
+        <item>Tay Ho</item>
+        <item>Hoan Kiem</item>
+        <item>Hai Ba Trung</item>
+        <item>Ba Dinh</item>
+        <item>Thanh Xuan</item>
+        <item>Hoang Mai</item>
+    </string-array>
 </resources>
