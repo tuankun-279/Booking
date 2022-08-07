@@ -3,7 +3,10 @@ package tuan.aprotrain.projectpetcare.entity;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -75,6 +78,26 @@ public class Recycle {
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String CalculateDate(String start){
+        int timeStart = Integer.parseInt(start);
+        //int timeEnd = Integer.parseInt(end);
+        String result = "";
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+        try {
+            Date date = Calendar.getInstance().getTime();
+            calendar.setTime(date);
+            calendar.add(Calendar.MINUTE, timeStart);
+            result = simpleDateFormat.format(calendar.getTime());
+            //editTextEnd.setText(result);
+            return result;
+        }catch (Exception e){
+            System.out.println("error");
+        }
+        return result;
+
     }
 
 }

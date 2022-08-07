@@ -4,7 +4,7 @@ public class Pet {
     private String petName;
 
     private String gender;
-    private String breed;
+    private String kind;
     private String species;
 
     private float petHeight;
@@ -23,7 +23,7 @@ public class Pet {
     public Pet(String petName, String gender, String breed, String species, float petHeight, float petWeight, String birthDate, String color, String intact, String notes, int petId, String userId) {
         this.petName = petName;
         this.gender = gender;
-        this.breed = breed;
+        this.kind = breed;
         this.species = species;
         this.petHeight = petHeight;
         this.petWeight = petWeight;
@@ -51,12 +51,12 @@ public class Pet {
         this.gender = gender;
     }
 
-    public String getBreed() {
-        return breed;
+    public String getKind() {
+        return kind;
     }
 
-    public void setBreed(String breed) {
-        this.breed = breed;
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
     public String getSpecies() {

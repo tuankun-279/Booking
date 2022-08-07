@@ -8,7 +8,7 @@ public class User {
     private String phoneNo;
     //private String password;
     private String userToken;
-    private String userRoll;
+    private String userRole;
     public static String TABLE_NAME = "Users";
     public User(){}
 
@@ -19,19 +19,19 @@ public class User {
     }
 
     public User(String userId, String userName, String email, String phoneNo,
-                 String userToken, String userRoll) {
+                 String userToken, String userRole) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.phoneNo = phoneNo;
         this.userToken = userToken;
-        this.userRoll = userRoll;
+        this.userRole = userRole;
     }
 
-    public User(String uid, String toLowerCase, String user) {
+    public User(String userId, String email, String userRole) {
         this.userId = userId;
         this.email = email;
-        this.userRoll = userRoll;
+        this.userRole = userRole;
     }
 
     public String getUserId() {
@@ -74,11 +74,11 @@ public class User {
         this.userToken = userToken;
     }
 
-    public String getUserRoll() {
-        return userRoll;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setUserRoll(String userRoll) {
-        this.userRoll = userRoll;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }

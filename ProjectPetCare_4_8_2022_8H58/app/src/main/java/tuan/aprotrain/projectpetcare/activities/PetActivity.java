@@ -2,7 +2,6 @@ package tuan.aprotrain.projectpetcare.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -67,8 +66,8 @@ public class PetActivity extends AppCompatActivity {
                 String PetBreed = editTextPetBreed.getText().toString();
                 String PetGender = editTextPetGender.getText().toString();
                 String PetBirth = editTextPetBirth.getText().toString();
-                Float PetHeight = Float.parseFloat(String.valueOf(editTextPetHeight.getText().toString()));
-                Float PetWeight = Float.parseFloat(String.valueOf(editTextPetWeight.getText().toString()));
+                Float PetHeight = Float.parseFloat(editTextPetHeight.getText().toString());
+                Float PetWeight = Float.parseFloat(editTextPetWeight.getText().toString());
                 String PetColor = editTextPetColor.getText().toString();
                 String PetIntact = editTextPetIntact.getText().toString();
                 String PetNote = editTextPetNote.getText().toString();
@@ -91,7 +90,7 @@ public class PetActivity extends AppCompatActivity {
                 petId = snapshot.exists() ? snapshot.getChildrenCount() + 1 : 1;
                 pets.setPetId(petId);
                 pets.setPetName(PetName);
-                pets.setBreed(PetBreed);
+                pets.setKind(PetBreed);
                 pets.setGender(PetGender);
                 pets.setBirthDate(PetBirth);
                 pets.setPetHeight(PetHeight);
@@ -102,7 +101,7 @@ public class PetActivity extends AppCompatActivity {
 
                 refPet.child(String.valueOf(petId)).setValue(pets);
                 isUpdating = false;
-                Toast.makeText(PetActivity.this, "Data Inserted Succesfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(PetActivity.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
                 //finish();
             }
 

@@ -126,15 +126,15 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void register(String email,String pass){
-        referenceUsers = FirebaseDatabase.getInstance().getReference().child(User.TABLE_NAME);
+        referenceUsers = FirebaseDatabase.getInstance().getReference().child("Users");
 
         mAuth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    user = new User(FirebaseAuth.getInstance().getUid(),email.toLowerCase(),"user");
-                    referenceUsers.child(FirebaseAuth.getInstance().getUid()).setValue(user);
+                    user = new User(FirebaseAuth.getInstance().getCurrentUser().getUid(),email.toLowerCase(),"user");
+                    referenceUsers.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                     Toast.makeText(RegisterActivity.this,"User registered successfully",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 }else {

@@ -14,13 +14,38 @@
         android:paddingTop="10dp"
         android:textSize="14dp"/>
 
+    <TextView
+        android:id="@+id/servicePrice"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif-black"
+        android:paddingStart="40dp"
+        android:paddingTop="30dp"
+        android:text="Price"
+        android:textColor="@color/green"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/serviceTime"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif-black"
+        android:paddingStart="100dp"
+        android:paddingTop="30dp"
+        android:text="Time"
+        android:textColor="@color/darker_grey"
+        android:textSize="10dp" />
+
+
     <CheckBox
         android:id="@+id/lstcheckBox"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignBottom="@+id/petService"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="23dp"
         android:button="@null"
         android:drawableRight="?android:attr/listChoiceIndicatorMultiple"

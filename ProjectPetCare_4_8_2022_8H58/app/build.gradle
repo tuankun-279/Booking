@@ -78,4 +78,7 @@ dependencies {
     //qrcode
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
+    // send message
+    implementation 'com.android.volley:volley:1.2.1'
+
 }

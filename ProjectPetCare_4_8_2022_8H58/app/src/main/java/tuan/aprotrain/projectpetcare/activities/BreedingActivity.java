@@ -354,7 +354,7 @@ public class BreedingActivity extends AppCompatActivity {
         List<Pet> filteredPet = new ArrayList<>();
         for (Pet item : petList) {
 
-            if (item.getBreed().toLowerCase().contains(searchText.toLowerCase())) {
+            if (item.getKind().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredPet.add(item);
             }
         }
@@ -400,4 +400,6 @@ public class BreedingActivity extends AppCompatActivity {
             petAdapter.setFilteredList(filteredPet);
         }
     }
+    //Intent contextBreeding = new Intent(getBaseContext(), BreedingActivity.this);
+
 }
