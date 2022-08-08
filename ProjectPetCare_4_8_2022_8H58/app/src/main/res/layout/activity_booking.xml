@@ -8,7 +8,6 @@
     android:overScrollMode="never"
     android:scrollbars="none"
     tools:context=".activities.BookingActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,15 +27,20 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-            <Spinner
-                android:id="@+id/spnPetName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAlignment="viewStart"
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Spinner android:id="@+id/spnPetName"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -74,17 +78,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <Spinner
-                    android:id="@+id/spnPayment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAlignment="viewStart"
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Spinner android:id="@+id/spnPayment"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"/>
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,14 +120,30 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Appointment"
-                android:textSize="20sp"
                 android:textAlignment="center"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-                app:layout_constraintVertical_bias="0.23" />
+                app:layout_constraintVertical_bias="0.067" />
+
+            <TextView
+                android:id="@+id/endDateHotel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="End Date Hotel"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+                app:layout_constraintVertical_bias="0.23"
+                android:visibility="gone"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
@@ -134,15 +157,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <Spinner
-                    android:id="@+id/spnAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAlignment="viewStart"
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Spinner android:id="@+id/spnAddress"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"/>
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
